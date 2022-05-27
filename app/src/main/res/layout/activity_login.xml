@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.mirea.kursachi.RegistrationActivity"
+    android:background="#1D2026">
+
+
+    <EditText
+        android:id="@+id/loginReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="210dp"
+        android:background="@drawable/background_edit_text"
+        android:ems="10"
+        android:hint="логин"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColorHint="#8F9BB3" />
+
+    <EditText
+        android:id="@+id/passwordReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="270dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="пароль"
+        android:textColorHint="#8F9BB3"
+        android:background="@drawable/background_edit_text"
+        android:paddingLeft="20dp"/>
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="270dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="330dp"
+        android:background="@drawable/btn_continue"
+        android:text="Войти" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/ic_logo" />
+</FrameLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/departures"
+        android:title="Вылеты"
+        android:icon="@drawable/ic_ico_departures" />
+    <item
+        android:id="@+id/arrivals"
+        android:title="Прилеты"
+        android:icon="@drawable/ic_ico_arrivals"/>
+    <item
+        android:id="@+id/transfers"
+        android:title="Пересадки"
+        android:icon="@drawable/ic_ico_transfer"/>
+</menu>

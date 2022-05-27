@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.mirea.kursachi.RegistrationActivity"
+    android:background="#1D2026">
+
+    <EditText
+        android:id="@+id/loginReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="210dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="логин"
+        android:textColorHint="#8F9BB3"
+        android:background="@drawable/background_edit_text"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/phoneReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="280dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="номер телефона"
+        android:textColorHint="#8F9BB3"
+        android:background="@drawable/background_edit_text"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/passwordReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="350dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="пароль"
+        android:textColorHint="#8F9BB3"
+        android:background="@drawable/background_edit_text"
+        android:paddingLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/passwordConfirmReg"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="420dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="подтвердите пароль"
+        android:textColorHint="#8F9BB3"
+        android:background="@drawable/background_edit_text"
+        android:paddingLeft="20dp"/>
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="270dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="490dp"
+        android:background="@drawable/btn_continue"
+        android:text="Продолжить" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/ic_logo" />
+</FrameLayout>

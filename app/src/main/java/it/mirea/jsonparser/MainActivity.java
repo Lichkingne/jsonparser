@@ -1,12 +1,17 @@
 package it.mirea.jsonparser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +29,7 @@ import java.util.Calendar;
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
+    public BottomNavigationView bottomNavigationView;
 
     private Thread secThread;//нельзя запускать трудоемкий поток, надо его отдельно)
     private ArrayList<String> tablo = new ArrayList<>();
@@ -49,6 +55,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigationView = findViewById(R.id.navBottomMenu);
+
+        replaceFragment(new DeparturesFragment());
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+
+                case R.id.departures:
+                    replaceFragment(new DeparturesFragment());
+                    break;
+                case R.id.arrivals:
+                    Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.transfers:
+                    Intent intent2 = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent2);
+                    break;
+            }
+            return true;
+        });
 
         init();
 
@@ -64,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
 //        new jsonTask().execute();
 
 
+    }
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frameFragment, fragment);
+        ft.commit();
     }
     private void init() {
         runnable = new Runnable() {

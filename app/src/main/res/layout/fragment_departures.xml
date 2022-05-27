@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1D2026"
+    tools:context=".DeparturesFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bacground_btn_back"
+        android:foreground="?attr/selectableItemBackground"
+        android:src="@drawable/ic_back_btn"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Табло вылета"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="60dp"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/searchDepartures"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:paddingStart="60dp"
+        android:inputType="textPersonName"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_edit_text_search"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ico_search"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="76dp"
+
+        android:layout_marginStart="80dp"/>
+
+    <ListView
+        android:id="@+id/listDepartures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:ellipsize="start"
+        android:layout_marginTop="120dp"
+        tools:ignore="RtlCompat" />
+
+
+</FrameLayout>
