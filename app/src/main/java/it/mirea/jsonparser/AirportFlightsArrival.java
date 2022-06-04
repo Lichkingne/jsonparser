@@ -10,13 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AirportFlightsArrival {
-    private String timeArr="";
-    private String cityArr="";
-    private String planeidArr="";
-    private String statusArr="";
+    public String timeArr="";
+    public String cityArr="";
+    public String planeidArr="";
+    public String statusArr="";
 
 
-    public AirportFlightsArrival(String s, String time, String city, String planeid, String status) {
+    public String getTimeArr() {
+        return timeArr;
+    }
+
+    public String getCityArr() {
+        return cityArr;
+    }
+
+    public String getPlaneidArr() {
+        return planeidArr;
+    }
+
+    public String getStatusArr() {
+        return statusArr;
+    }
+
+    public AirportFlightsArrival(String time, String city, String planeid, String status) {
         this.timeArr = time;
         this.cityArr = city;
         this.planeidArr = planeid;
@@ -24,8 +40,7 @@ public class AirportFlightsArrival {
 
     }
 
-    public AirportFlightsArrival(String time, String city, String planeid, String status) {
-    }
+
 
     public void setTime(String time) {
         this.timeArr = time;

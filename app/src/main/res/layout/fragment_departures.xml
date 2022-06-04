@@ -59,7 +59,8 @@
         android:layout_gravity="top"
         android:ellipsize="start"
         android:layout_marginTop="120dp"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat"
+    />
 
 
 </FrameLayout>

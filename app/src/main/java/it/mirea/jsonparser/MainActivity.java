@@ -6,11 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -20,23 +17,23 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.concurrent.Exchanger;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
     public BottomNavigationView bottomNavigationView;
-
+    public ArrayList<String> timearr;
     private Thread secThread;//нельзя запускать трудоемкий поток, надо его отдельно)
     private ArrayList<String> tablo = new ArrayList<>();
     private ArrayList<String> tabloArr = new ArrayList<>();
     private Thread theThread;
-    private ArrayList<AirportFlights> pol = new ArrayList<>();
-    private ArrayList<AirportFlightsArrival> polArr = new ArrayList<>();
+    public ArrayList<AirportFlights> pol = new ArrayList<>();
+    public ArrayList<AirportFlightsArrival> polArr = new ArrayList<>();
     private Runnable runnable;
     String key = "18bacc75-c40b-4510-a42e-63efd9720bc8";
     String note = "&format=json&station=s9600370&transport_types=plane&";
@@ -51,10 +48,20 @@ public class MainActivity extends AppCompatActivity {
 
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&transfers=true&date=2022-05-27
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&date=2022-04-27
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Exchanger<String> Arrival = new Exchanger<String>();
+        init();
+        init1();
         setContentView(R.layout.activity_main);
+
+
+
+//        tv[1].setText(polArr.get(i).getPlaneidArr());
+//        tv[2].setText(polArr.get(i).getTimeArr());
+//        tv[3].setText(polArr.get(i).getStatusArr());
         bottomNavigationView = findViewById(R.id.navBottomMenu);
 
         replaceFragment(new DeparturesFragment());
@@ -76,21 +83,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        init();
-
-        init1();
-
-//        url = url + "&date=2022-05-23";
-//        System.out.println(url);
-//        try {
-//            razbor();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        new jsonTask().execute();
 
 
-    }
+
+        }
+
     public void replaceFragment(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -102,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 getWebArr();
+
+              //  fk.s00etText("f");
+//                TextView []tv = new TextView[4];
+//                tv[0] = (TextView) findViewById(R.id.city);
+//                tv[1] = (TextView) findViewById(R.id.idplane);
+//                tv[2] = (TextView) findViewById(R.id.timeflight);
+//                tv[3] = (TextView) findViewById(R.id.status);
+//                tv[0].setText("fff");
 
 
 
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             }
             System.out.println(date);
             urlForArrival = url + key + note + eventArrival + days + date;
-
+            //TextView city = findViewById(R.id.city);
 
             System.out.println(urlForArrival);
             //url=urlForDeparture;
@@ -161,18 +166,16 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < counter; i++) {
                 tabloArr.add(txt);
-                AirportFlightsArrival buf = new AirportFlightsArrival(tabloArr.get(i), tabloArr.get(i), tabloArr.get(i), tabloArr.get(i), "");
+                AirportFlightsArrival buf = new AirportFlightsArrival("", "", "", "");
                 polArr.add(buf);
                 JSONObject object_JSONObject1 = array_JSONArray.getJSONObject(i);
                 JSONObject object_JSONObject2 = object_JSONObject1.getJSONObject("thread");
                 polArr.get(i).setCity(object_JSONObject2.getString("short_title"));
                 polArr.get(i).setPlaneid(object_JSONObject2.getString("number"));
                 String str = object_JSONObject1.getString("arrival");
-
                 String[] wert = str.split("T");
                 String p = wert[1];
                 String[] op = p.split("\\+");
-
                 polArr.get(i).setTime(op[0]);
                 String u = op[0];
                 String[] y = u.split(":");
@@ -185,11 +188,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     polArr.get(i).setStatus("прилетит по расписанию");
                 }
-
-
-                System.out.println(polArr.get(i));
+                //timearr = polArr.get(i).getTimeArr();
+                //System.out.println(timearr);
             }
-            ;
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -199,28 +201,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    public void setDate() {
-//        // получаем текущее время
-//        Calendar c = Calendar.getInstance();
-//        int month = c.get(Calendar.MONTH);
-//        int yaer = c.get(Calendar.YEAR);
-//        int day = c.get(Calendar.DATE);
-//        int hours = c.get(Calendar.HOUR_OF_DAY);
-//        int minutes = c.get(Calendar.MINUTE);
-//        int seconds = c.get(Calendar.SECOND);
-//
-//        if(month<10) {
-//            date = yaer + "-" + "0" + month + "-" + day;
-//        }else {
-//            date = yaer + "-"  + month + "-" + day;
-//        }
-//        System.out.println(date);
-//    }
-//    private void dateForm(){
-//        urlForDeparture=url+key+note+eventDeparture+days+date;
-//        urlForArrival=url+key+note+evetArrival+days+date;
-//        System.out.println(urlForDeparture);System.out.println(urlForArrival);
-//    }
+
     private void getWeb(){
         try {
             Calendar c = Calendar.getInstance();
@@ -258,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
             for(int i = 0; i< counter;i++){
                 tablo.add(txt);
-                AirportFlights buf = new AirportFlights(tablo.get(i), tablo.get(i), tablo.get(i), tablo.get(i), "");
+                AirportFlights buf = new AirportFlights("", "", "", "");
                 pol.add(buf);
                 JSONObject object_JSONObject1 = array_JSONArray.getJSONObject(i);
                 JSONObject object_JSONObject2 = object_JSONObject1.getJSONObject("thread");
@@ -284,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                System.out.println(pol.get(i));
+                //System.out.println(pol.get(i));
                             }
 //            System.out.println(array_JSONArray.length());
 //            JSONObject object_JSONObject1 = array_JSONArray.getJSONObject(0);
