@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1D2026"
-    tools:context="it.mirea.kursachi.MainActivity">
+    tools:context="it.mirea.jsonparser.MainActivity">
 
     <FrameLayout
         android:id="@+id/frameFragment"

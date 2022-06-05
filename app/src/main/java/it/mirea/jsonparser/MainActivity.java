@@ -1,8 +1,5 @@
 package it.mirea.jsonparser;
 
-import static java.lang.Thread.activeCount;
-import static java.lang.Thread.yield;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +27,10 @@ import java.util.concurrent.Exchanger;
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
+
+
     public BottomNavigationView bottomNavigationView;
+    static ArrayList<AirportFlightsArrival> departuresList = new ArrayList<>();
     public String timearr;
     private Thread secThread;//нельзя запускать трудоемкий поток, надо его отдельно)
     private ArrayList<String> tablo = new ArrayList<>();
@@ -48,18 +49,18 @@ public class MainActivity extends AppCompatActivity {
     String urlForArrival = "";
     String date = "";
     String Check = "";
-    int counterDep;
-
+    int counterArr;
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&transfers=true&date=2022-05-27
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&date=2022-04-27
-    synchronized
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Exchanger<String> Arrival = new Exchanger<String>();
-        //secThread.setPriority(secThread. MAX_PRIORITY);
-        //theThread.setPriority(theThread. MAX_PRIORITY);
-        //getWeb();
+//        TextView []tv = new TextView[4];
+//                tv[0] = (TextView) findViewById(R.id.city);
+//                tv[1] = (TextView) findViewById(R.id.idplane);
+//                tv[2] = (TextView) findViewById(R.id.timeflight);
+//                tv[3] = (TextView) findViewById(R.id.status);
+
         init();
         init1();
         try {
@@ -68,25 +69,26 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String K = "";
-        for (int i = 0 ; i<counterDep;i++){
-        timearr = polArr.get(i).cityArr;
-        System.out.println(timearr);
-        timearr = polArr.get(i).planeidArr;
-        System.out.println(timearr);
-        timearr = polArr.get(i).statusArr;
-        System.out.println(timearr);
-        timearr = polArr.get(i).timeArr;
-        System.out.println(timearr);}
+
+        for (int i = 0 ; i<counterArr;i++)
+        {
+            AirportFlightsArrival buf = new AirportFlightsArrival("", "", "", "");
+            departuresList.add(buf);
+            timearr = polArr.get(i).cityArr;
+            departuresList.get(i).setCity(timearr);
+            System.out.println(departuresList.get(i).cityArr);
+            timearr = polArr.get(i).timeArr;
+            departuresList.get(i).setTime(timearr);
+            timearr = polArr.get(i).planeidArr;
+            departuresList.get(i).setPlaneid(timearr);
+            timearr = polArr.get(i).statusArr;
+            departuresList.get(i).setStatus(timearr);
+       }
+
         setContentView(R.layout.activity_main);
 
-
-
-//        tv[1].setText(polArr.get(i).getPlaneidArr());
-//        tv[2].setText(polArr.get(i).getTimeArr());
-//        tv[3].setText(polArr.get(i).getStatusArr());
         bottomNavigationView = findViewById(R.id.navBottomMenu);
-
-        replaceFragment(new DeparturesFragment());
+        //replaceFragment(new DeparturesFragment());
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
 
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject object_JSONObject = new JSONObject(buff.toString());
             JSONArray array_JSONArray = object_JSONObject.getJSONArray("schedule");
             int counter = array_JSONArray.length();
-            counterDep = counter;
+            counterArr = counter;
             for (int i = 0; i < counter; i++) {
                 tabloArr.add(txt);
                 AirportFlightsArrival buf = new AirportFlightsArrival("", "", "", "");
@@ -203,13 +205,9 @@ public class MainActivity extends AppCompatActivity {
                 String m = y[1];
                 int t = Integer.parseInt(s);
                 int r = Integer.parseInt(m);
-                if (t <= hour & r <= minute) {
-                    polArr.get(i).setStatus("прилетел");
-                } else {
-                    polArr.get(i).setStatus("прилетит по расписанию");
+                if (t <= hour & r <= minute) {polArr.get(i).setStatus("прилетел");
+                } else {polArr.get(i).setStatus("прилетит по расписанию");
                 }
-                //timearr = polArr.get(i).getTimeArr();
-                //System.out.println(timearr);
             }
 
 

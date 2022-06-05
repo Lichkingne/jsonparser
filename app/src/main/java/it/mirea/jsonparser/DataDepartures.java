@@ -4,4 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DataDepartures {
-    static ArrayList<String> departuresList = new ArrayList<>(Arrays.asList());}
+    static ArrayList<String> departuresList = new ArrayList<>(Arrays.asList());
+
+}
