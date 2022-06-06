@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String K = "";
+
 
         for (int i = 0 ; i<counterArr;i++)
         {
