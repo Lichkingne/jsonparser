@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.concurrent.Exchanger;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -30,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public BottomNavigationView bottomNavigationView;
-    static ArrayList<AirportFlightsArrival> departuresList = new ArrayList<>();
+    static ArrayList<AirportFlightsArrival> ArrivalsList = new ArrayList<>();
+    static ArrayList<AirportFlights> departuresList = new ArrayList<>();
     public String timearr;
+    public String timedep;
     private Thread secThread;//нельзя запускать трудоемкий поток, надо его отдельно)
     private ArrayList<String> tablo = new ArrayList<>();
     private ArrayList<String> tabloArr = new ArrayList<>();
@@ -50,16 +49,13 @@ public class MainActivity extends AppCompatActivity {
     String date = "";
     String Check = "";
     int counterArr;
+    int counterDep;
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&transfers=true&date=2022-05-27
     //https://api.rasp.yandex.net/v3.0/schedule/?apikey=18bacc75-c40b-4510-a42e-63efd9720bc8&format=json&station=s9600370&transport_types=plane&event=departure&lang=ru_RU&date=2022-04-27
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        TextView []tv = new TextView[4];
-//                tv[0] = (TextView) findViewById(R.id.city);
-//                tv[1] = (TextView) findViewById(R.id.idplane);
-//                tv[2] = (TextView) findViewById(R.id.timeflight);
-//                tv[3] = (TextView) findViewById(R.id.status);
+//
 
         init();
         init1();
@@ -73,22 +69,35 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0 ; i<counterArr;i++)
         {
             AirportFlightsArrival buf = new AirportFlightsArrival("", "", "", "");
-            departuresList.add(buf);
+            ArrivalsList.add(buf);
             timearr = polArr.get(i).cityArr;
-            departuresList.get(i).setCity(timearr);
-            System.out.println(departuresList.get(i).cityArr);
+            ArrivalsList.get(i).setCity(timearr);
+            System.out.println(ArrivalsList.get(i).cityArr);
             timearr = polArr.get(i).timeArr;
-            departuresList.get(i).setTime(timearr);
+            ArrivalsList.get(i).setTime(timearr);
             timearr = polArr.get(i).planeidArr;
-            departuresList.get(i).setPlaneid(timearr);
+            ArrivalsList.get(i).setPlaneid(timearr);
             timearr = polArr.get(i).statusArr;
-            departuresList.get(i).setStatus(timearr);
+            ArrivalsList.get(i).setStatus(timearr);
        }
+        for (int t = 0 ; t<counterDep;t++)
+        {
+            AirportFlights buf = new AirportFlights("", "", "", "");
+            departuresList.add(buf);
+            timedep = pol.get(t).city;
+            departuresList.get(t).setCity(timedep);
+            timedep = pol.get(t).time;
+            departuresList.get(t).setTime(timedep);
+            timedep = pol.get(t).planeid;
+            departuresList.get(t).setPlaneid(timedep);
+            timedep = pol.get(t).status;
+            departuresList.get(t).setStatus(timedep);
+        }
 
         setContentView(R.layout.activity_main);
 
+        replaceFragment(new DeparturesFragment());
         bottomNavigationView = findViewById(R.id.navBottomMenu);
-        //replaceFragment(new DeparturesFragment());
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
 
@@ -96,12 +105,10 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new DeparturesFragment());
                     break;
                 case R.id.arrivals:
-                    Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-                    startActivity(intent);
+                    replaceFragment(new ArrivalsFragment());
                     break;
                 case R.id.transfers:
-                    Intent intent2 = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent2);
+
                     break;
             }
             return true;
@@ -124,13 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 getWebArr();
 
-              //  fk.s00etText("f");
-//                TextView []tv = new TextView[4];
-//                tv[0] = (TextView) findViewById(R.id.city);
-//                tv[1] = (TextView) findViewById(R.id.idplane);
-//                tv[2] = (TextView) findViewById(R.id.timeflight);
-//                tv[3] = (TextView) findViewById(R.id.status);
-//                tv[0].setText("fff");
+
 
 
 
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject object_JSONObject = new JSONObject(buff.toString());
             JSONArray array_JSONArray = object_JSONObject.getJSONArray("schedule");
             int counter = array_JSONArray.length();
-
+            counterDep = counter;
             for(int i = 0; i< counter;i++){
                 tablo.add(txt);
                 AirportFlights buf = new AirportFlights("", "", "", "");

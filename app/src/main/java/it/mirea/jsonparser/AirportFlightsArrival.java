@@ -1,14 +1,5 @@
 package it.mirea.jsonparser;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class AirportFlightsArrival {
     public String timeArr="";
     public String cityArr="";
