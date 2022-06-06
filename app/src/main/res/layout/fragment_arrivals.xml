@@ -8,7 +8,7 @@
     tools:context=".DeparturesFragment">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButton2"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="top|start"
@@ -20,10 +20,10 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Табло вылета"
+        android:text="Табло прилета"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_gravity="top|start"
@@ -32,7 +32,7 @@
         android:textSize="16sp"/>
 
     <EditText
-        android:id="@+id/searchDepartures"
+        android:id="@+id/searchDepartures2"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -53,13 +53,14 @@
         android:layout_marginStart="80dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerView"
+        android:id="@+id/RecyclerView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="top"
-        android:layout_marginTop="120dp"
         android:ellipsize="start"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_marginTop="120dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
 
 </FrameLayout>

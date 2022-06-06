@@ -3,11 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/a.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/bacground_btn_back.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/background_edit_text_search.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/btn_continue.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_back_btn.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_ico_arrivals.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_ico_departures.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_ico_search.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_ico_transfer.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_logo.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_mail.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_trips.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_union.xml" value="0.1705" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/drawable/ic_union__1_.xml" value="0.1705" />
         <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/activity_login.xml" value="0.1421875" />
         <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/activity_profile.xml" value="0.2" />
         <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/activity_registration.xml" value="0.1421875" />
         <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/custom_list.xml" value="0.264" />
-        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/fragment_departures.xml" value="0.24822695035460993" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/fragment_arrivals.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/fragment_departures.xml" value="0.4" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/load_activity.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/t_mos/Desktop/jsonparser/app/src/main/res/layout/profile_state.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.17477203647416414" />
+        <entry key="app/src/main/res/layout/fragment_arrivals.xml" value="0.2318840579710145" />
+        <entry key="app/src/main/res/layout/fragment_departures.xml" value="0.2318840579710145" />
       </map>
     </option>
   </component>
